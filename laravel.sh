@@ -3,9 +3,11 @@ cd /var/www/html
 
 composer install --no-interaction --no-suggest
 
-if [ ! -f .env ]; then
-    echo "Environment file not found, creating"
-    cp .env.example .env
+if [ "${LARAVEL_KEY_GENERATE}" = "true" ]; then
+    if [ ! -f .env ]; then
+	echo "Environment file not found, creating"
+	cp .env.example .env
+    fi
     php artisan key:generate
 fi
 
