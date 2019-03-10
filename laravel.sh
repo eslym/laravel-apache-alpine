@@ -3,6 +3,12 @@ cd /var/www/html
 
 composer install --no-interaction --no-suggest
 
+if [ ! -f .env ]; then
+    echo "Environment file not found, creating"
+    cp .env.example .env
+    php artisan key:generate
+fi
+
 if [ "${LARAVEL_MIGRATION}" = "true" ]; then
     if [ "LARAVEL_FORCE_MIGRATE" = "true" ]; then
 	php artisan migrate --force
