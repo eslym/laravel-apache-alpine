@@ -32,7 +32,7 @@ if [ "${LARAVEL_CACHE_CONFIG}" = "true" ]; then
 fi
 
 echo "Fixing file permissions..."
-chown -R apache.apache /var/www/html
+chown -R apache:apache /var/www/html
 
 echo "Starting cron"
 crond &
